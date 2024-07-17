@@ -72,6 +72,6 @@ int main(int argc, char *argv[])
 
 	// Monitor(data);
 
-	//display_table(data);
+	display_table(data);
 	free_and_exit(data, NULL);
 }
