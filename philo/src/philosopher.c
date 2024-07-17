@@ -28,8 +28,10 @@ void philo_eat(t_philo *p)
 	ft_mutex_write(p, "took right fork.");
 	ft_mutex_write(p, "took left fork.");
 	ft_mutex_write(p, "is eating.");
+	pthread_mutex_lock(&p->data->p_mutex);
 	p->last_meal = get_current_time();
 	p->meals_eaten++;
+	pthread_mutex_unlock(&p->data->p_mutex);
 	ft_usleep(p->data->time_to_eat);
 	pthread_mutex_unlock(p->l_fork);
 	pthread_mutex_unlock(&p->r_fork);

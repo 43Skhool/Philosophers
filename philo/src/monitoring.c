@@ -17,14 +17,18 @@ int	check_meals(t_data *data);
 
 void	Monitor(t_data *data)
 {
+	pthread_mutex_lock(&data->p_mutex);
 	while (!check_philo(data) && !check_meals(data))
 	{
+		pthread_mutex_unlock(&data->p_mutex);
 		usleep(500);
+		pthread_mutex_lock(&data->p_mutex);
 	}
 	if (check_meals(data))
 		ft_mutex_write(data->first_philo, "each philosopher is satisfied");
 	else
 		ft_mutex_write(check_philo(data), "has died of hunger.");
+	pthread_mutex_unlock(&data->p_mutex);
 	get_gameover(data, true);
 }
 
