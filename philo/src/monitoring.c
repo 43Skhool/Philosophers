@@ -22,7 +22,7 @@ void	Monitor(t_data *data)
 		ft_mutex_write(data->first_philo, "each philosopher is satisfied");
 	else
 		ft_mutex_write(check_philo(data), "has died of hunger.");
-	(void)get_gameover(data, true);
+	get_gameover(data, true);
 }
 
 int	check_meals(t_data *data)
