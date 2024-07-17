@@ -1,0 +1,286 @@
+[33mcommit 8933d86ab6cb670f87b73505d73f1e3ba098a5cf[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Wed Jul 17 18:27:43 2024 +0200
+
+    dovrebbe esse rimasto solo il deadlock
+
+[33mcommit 9cdf51e355414976f4a76cac8acfffd5fb6520ab[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Wed Jul 17 17:46:59 2024 +0200
+
+    mezzo funzica
+
+[33mcommit 9aa4637e273e3b5f87c1de186abce8c1240a702f[m
+Merge: 76b9a03 bebbd4a
+Author: 43Skhool <147620458+43Skhool@users.noreply.github.com>
+Date:   Wed Jul 17 17:37:38 2024 +0200
+
+    Merge remote-tracking branch 'refs/remotes/origin/main'
+
+[33mcommit 76b9a039a355e1c121c016555712a31f35e58942[m
+Author: LeonardoBartolini <>
+Date:   Wed Jul 17 17:30:39 2024 +0200
+
+    due warning
+
+[33mcommit bebbd4a526f87b16f719969a88704018e59b1939[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Wed Jul 17 17:27:19 2024 +0200
+
+    remake fork initializing
+
+[33mcommit 1da3cf29e5e8ca2e5df3c81b880d094003e80501[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Wed Jul 17 16:22:17 2024 +0200
+
+    monitior
+
+[33mcommit 5f56e94e969494088341f0786eac237366baa05e[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Wed Jul 17 16:02:18 2024 +0200
+
+    make file removed ans read
+
+[33mcommit a4c358ef2cb42f32be1fcbf2d021c336fd30781c[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Wed Jul 17 15:58:27 2024 +0200
+
+    move create_threads in main from monitor
+
+[33mcommit e93d7502075e67bb9e4f61eca4fa4ef18a7aca99[m
+Author: LeonardoBartolini <>
+Date:   Wed Jul 17 15:47:16 2024 +0200
+
+    dio stronzo
+
+[33mcommit 8f6f38dcaaa3f991f8acc64b3c331a6292b35843[m
+Merge: 4214c07 0377c25
+Author: 43Skhool <147620458+43Skhool@users.noreply.github.com>
+Date:   Wed Jul 17 13:02:58 2024 +0200
+
+    Merge pull request #1 from FarX0/tfalchi
+    
+    Tfalchi
+
+[33mcommit 0377c2531bdee9e04e2b030e7d372fa4fb5f242a[m
+Author: FarX0 <tommaso.falchi30@gmail.com>
+Date:   Wed Jul 17 12:58:42 2024 +0200
+
+    push pt 3
+
+[33mcommit 84799fcbd3f4e6aa3ca9a96c0f3643ab8bff6d31[m
+Author: FarX0 <tommaso.falchi30@gmail.com>
+Date:   Wed Jul 17 12:51:59 2024 +0200
+
+    re-push con permessi
+
+[33mcommit 1fb76d7f1bc0bb5871003fab6810ca0a24f2f8ba[m
+Author: FarX0 <tommaso.falchi30@gmail.com>
+Date:   Tue Jul 16 16:00:56 2024 +0200
+
+    file piu' ordinati, risoluzione di minori data races.
+
+[33mcommit 4214c07212ea6564acff95b35134b56e3df724dd[m
+Author: Marco <108130458+Sheratan095@users.noreply.github.com>
+Date:   Tue Jul 16 11:08:59 2024 +0200
+
+    Update Makefile
+
+[33mcommit 28543b2e89364b4289b83b6efc213e0068e5c3dd[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Tue Jul 16 11:05:28 2024 +0200
+
+    1000 al posto di 500 ms in ft_uspleep
+
+[33mcommit e32c887d6e98761e348cfb4afaf7e7de05eb6953[m
+Author: LeonardoBartolini <>
+Date:   Mon Jul 15 13:05:13 2024 +0200
+
+    i need a hero
+
+[33mcommit 09ee79f58e683ec4d9dc344758fead16c5600998[m
+Author: LeonardoBartolini <>
+Date:   Sat Jul 13 11:59:27 2024 +0200
+
+    helgrind detects datarace on variable data->gameover, this is to be expected however the thread sanitizer does not seem to detect it
+
+[33mcommit 2a432df5801aa501cad95c988c9d6d3e178e8067[m
+Merge: bab0e29 d464d41
+Author: 43Skhool <147620458+43Skhool@users.noreply.github.com>
+Date:   Sat Jul 13 11:58:44 2024 +0200
+
+    Merge branch 'main' of https://github.com/43Skhool/Philosophers
+
+[33mcommit bab0e29a6ed2c0c33193f9b1f59537ccda1fe8ef[m
+Author: LeonardoBartolini <>
+Date:   Sat Jul 13 11:58:09 2024 +0200
+
+    helgrind detects datarace on variable data->gameover, this is to be expected however the thread sanitizer does not seem to detect it
+
+[33mcommit d464d4166bb8b84f322c8cf53d840905fd538623[m
+Author: LeonardoBartolini <>
+Date:   Sat Jul 13 11:38:34 2024 +0200
+
+    make
+
+[33mcommit e5c245c24ab1b53356cec93821d7aa72e6f3d9fd[m
+Author: LeonardoBartolini <>
+Date:   Sat Jul 13 02:30:20 2024 +0200
+
+    there's a starman waiting in the sky
+
+[33mcommit 5a50214b55cab7935400d548c4206f5c9e68c6e3[m
+Author: LeonardoBartolini <>
+Date:   Sat Jul 13 00:10:55 2024 +0200
+
+    datarace
+
+[33mcommit 68a27a20cd6f96f1aba00d37df45f730f6773700[m
+Author: LeonardoBartolini <>
+Date:   Fri Jul 12 21:54:47 2024 +0200
+
+    allocation is successful on 2 philosophers
+
+[33mcommit fe5407cd77a0f94f66b5ae2b6b72f3e3f1c1514c[m
+Author: 43Skhool <147620458+43Skhool@users.noreply.github.com>
+Date:   Fri Jul 12 17:48:49 2024 +0200
+
+    valgrind
+
+[33mcommit ecb2484df47508243eb4f84ca2a1facb415bd1a6[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Fri Jul 12 17:12:39 2024 +0200
+
+    fix utils.c
+
+[33mcommit 73754b88bff6490e26c2641250af75770a6ee5b4[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Fri Jul 12 17:05:17 2024 +0200
+
+    rimesso exit in free_and_exit()
+
+[33mcommit 41933d5bdff0dd5000cece64551123c72cdc1727[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Fri Jul 12 17:04:51 2024 +0200
+
+    rimesso exit in free_and_exit()
+
+[33mcommit c5ab9e191e7a1aaacf6716a315bdcf4219210437[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Fri Jul 12 16:54:57 2024 +0200
+
+    ancora meglio
+
+[33mcommit d1efb9a4f4e69a8297f2942bc860bac326ab1ec7[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Fri Jul 12 16:53:49 2024 +0200
+
+    almeno il parsing dovrebbe funzionare
+
+[33mcommit 0ff7269c6260569de30885e2c11cd2fb3a7d844d[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Fri Jul 12 16:31:13 2024 +0200
+
+    philo2
+
+[33mcommit 60ba8070247e75dffbc11c4bf8d036a5c86ba59e[m
+Author: 43Skhool <147620458+43Skhool@users.noreply.github.com>
+Date:   Fri Jul 12 15:38:37 2024 +0200
+
+    data race
+    
+    add philo death
+
+[33mcommit 4e43704925174e6fc7b1e28041f6db18651c22a0[m
+Author: LeonardoBartolini <>
+Date:   Fri Jul 12 15:14:24 2024 +0200
+
+    d
+
+[33mcommit f538d364ea2f2b9241337538fa8587c4b270b7b2[m
+Author: LeBartol <lebartol@student.42firenze.it>
+Date:   Wed Jul 10 18:47:26 2024 +0200
+
+    text
+
+[33mcommit 372d7f9125882e666a3d4afd559480763ffbc7c7[m
+Author: LeBartol <lebartol@student.42firenze.it>
+Date:   Wed Jul 10 18:04:20 2024 +0200
+
+    thats not all folks
+
+[33mcommit d63f0a79b67b92899b4910c9a23c3d3461c33f66[m
+Author: LeBartol <lebartol@student.42firenze.it>
+Date:   Wed Jul 10 13:34:23 2024 +0200
+
+    get forks
+
+[33mcommit c073c2c59888b04404f32d610cc1dd0fde7ce399[m
+Author: LeBartol <lebartol@student.42firenze.it>
+Date:   Tue Jul 9 17:49:36 2024 +0200
+
+    still reachable
+
+[33mcommit 0bf7567b070503cb7666682f5d164dc29b88060e[m
+Author: LeBartol <lebartol@student.42firenze.it>
+Date:   Tue Jul 9 17:27:40 2024 +0200
+
+    asynch threads
+
+[33mcommit 9120a7cb909fe3167dc2887478c90c3202c396d4[m
+Merge: 68bef4d e396dae
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Tue Jul 9 17:10:08 2024 +0200
+
+    main
+
+[33mcommit 68bef4d082bf7af34a4b84ef9c5ada3797f5c378[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Tue Jul 9 17:09:19 2024 +0200
+
+    main
+
+[33mcommit e396dae1073ba9f06d3e08d38439f27b9338f598[m
+Author: LeBartol <lebartol@student.42firenze.it>
+Date:   Tue Jul 9 17:05:01 2024 +0200
+
+    lol
+
+[33mcommit f854cc15517046813a2c4bcdb60efee091d38d24[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Tue Jul 9 16:40:39 2024 +0200
+
+    order and gitignore
+
+[33mcommit 6e74c825e148c1a8984392adb5fce0ecc7ef403c[m
+Author: LeBartol <lebartol@student.42firenze.it>
+Date:   Tue Jul 9 16:38:35 2024 +0200
+
+    lol
+
+[33mcommit a6e265cfe750e8fe03a4a4d52494959f88680f8c[m
+Merge: eb88554 f6c707a
+Author: LeBartol <lebartol@student.42firenze.it>
+Date:   Tue Jul 9 16:37:14 2024 +0200
+
+    ngs
+
+[33mcommit eb88554283ba939981e6de33a26c80ee3cefdf02[m
+Author: LeBartol <lebartol@student.42firenze.it>
+Date:   Tue Jul 9 16:29:19 2024 +0200
+
+    still standing
+
+[33mcommit f6c707a20363c6c7c31b55136b8a71f875a83d60[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Tue Jul 9 16:22:54 2024 +0200
+
+    to do
+
+[33mcommit 31782337c09e379e177ccae9441139c9cb9f6fb8[m
+Author: Marco <marco.ceccarelli.code@gmail.com>
+Date:   Tue Jul 9 15:46:56 2024 +0200
+
+    reordering starting functions
+
+[33mcomm

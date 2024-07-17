@@ -18,7 +18,7 @@ FLAGS		= -Wall -Werror -Wextra -I includes -pthread -fsanitize=thread -g
 
 OBJS		= $(SRC:%.c=%.o)
 
-ARG = 3 800 200 200 10
+ARG = 5 600 150 150
 
 # -s : for valgrind
 $(NAME): $(OBJS)
@@ -45,7 +45,7 @@ re: fclean all
 
 test: all
 	@echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
-	 ./$(NAME) 9 800 200 200 10
+	 ./$(NAME) $(ARG)
 # @echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
 #  ./$(NAME) 1 -800 200 200
 # @echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
