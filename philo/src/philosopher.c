@@ -22,7 +22,7 @@ void philo_sleep(t_philo *p)
 void philo_eat(t_philo *p)
 {
 	if (p->data->number_of_philosophers == 1)
-		return ;x
+		return ;
 	pthread_mutex_lock(&p->r_fork);
 	pthread_mutex_lock(p->l_fork);
 	ft_mutex_write(p, "took right fork.");
