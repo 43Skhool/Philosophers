@@ -14,8 +14,6 @@
 
 void	Monitor(t_data *data)
 {
-	if (create_threads(data))
-		return ;
 	while (!check_philo(data) && !check_meals(data))
 	{
 		usleep(500);

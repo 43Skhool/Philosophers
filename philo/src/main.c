@@ -67,7 +67,10 @@ int main(int argc, char *argv[])
 	data = parse_arguments(argc, argv);
 	data = initialize_table(data);
 
-	Monitor(data);
+	if (!create_threads(data))
+		Monitor(data);
+
+	// Monitor(data);
 
 	//display_table(data);
 	free_and_exit(data, NULL);
