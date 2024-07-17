@@ -63,7 +63,7 @@ void	display_table(t_data *data)
 	philo_tmp = data->first_philo;
 	while (i <= data->number_of_philosophers)
 	{
-		printf("%p <- Current id:%i -> %p\n", philo_tmp->l_fork, philo_tmp->id, &philo_tmp->r_fork);
+		printf("%p <- Current id:%i -> %p\n", &philo_tmp->l_fork->fork, philo_tmp->id, &philo_tmp->r_fork->fork);
 		printf("on his left id: %p, ", &philo_tmp->left_philo->id);
 		printf("on his rigth id: %p\n", &philo_tmp->right_philo->id);
 		philo_tmp = philo_tmp->right_philo;

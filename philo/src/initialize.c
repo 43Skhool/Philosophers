@@ -13,6 +13,8 @@
 #include "philo.h"
 
 static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo);
+static t_bool	distribute_forks(t_data *data);
+static t_fork	*new_fork(t_data *data);
 
 // Used to allocate philosophers and forks
 // i starts from 1 beacause philos id must start from 1
@@ -39,9 +41,9 @@ t_data	*initialize_table(t_data *data)
 		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}
-	data->first_philo->l_fork = &philo_tmp->r_fork;
 	philo_tmp->right_philo = data->first_philo;
 	data->first_philo->left_philo = philo_tmp;
+	distribute_forks(data);
 	return (data);
 }
 
@@ -55,11 +57,10 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 	if (!philo)
 		free_and_exit(data, "Error\n allocation failed");
 	philo->id = id;
-	if (pthread_mutex_init(&philo->r_fork, NULL))
-		free_and_exit(data, "Error\n fork allocation failed");
+
 	if (left_philo)
 	{
-		philo->l_fork = &left_philo->r_fork;
+		// philo->l_fork = &left_philo->r_fork;
 		philo->left_philo = left_philo;
 	}
 	philo->birthday =  data->timestamp;
@@ -68,4 +69,36 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 	philo->meals_eaten = 0;
 	philo->data = data;
 	return (philo);
+}
+
+static t_bool	distribute_forks(t_data *data)
+{
+	t_philo	*philo;
+	int		i;
+	t_fork	*fork;
+
+	philo = data->first_philo;
+	i = 0;
+	while (i < data->number_of_philosophers)
+	{
+		fork = new_fork(data);
+		philo->r_fork = fork;
+		philo = philo->right_philo;
+		philo->l_fork = fork;
+		i++;
+	}
+	return (true);
+}
+
+static t_fork	*new_fork(t_data *data)
+{
+	t_fork	*new_fork;
+
+	new_fork = malloc(sizeof(t_fork));
+	if (!new_fork)
+		free_and_exit(data, "Error\n fork allocation failed");
+	if (pthread_mutex_init(&new_fork->fork, NULL))
+		free_and_exit(data, "Error\n fork allocation failed");
+	new_fork->is_avaible = true;
+	return (new_fork);
 }
