@@ -18,7 +18,7 @@ FLAGS		= -Wall -Werror -Wextra -I includes -pthread -fsanitize=thread -g
 
 OBJS		= $(SRC:%.c=%.o)
 
-ARG = 5 600 150 150
+ARG = 5 600 150 150 10
 
 # -s : for valgrind
 $(NAME): $(OBJS)
@@ -44,26 +44,30 @@ fclean: clean
 re: fclean all
 
 test: all
+	@echo "$(GREEN)[PHILO]:\t ARG$(RESET)"
+	@read ans
+		./$(NAME) $(ARG)
 	@echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
-	 ./$(NAME) $(ARG)
-# @echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
-#  ./$(NAME) 1 -800 200 200
-# @echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
-#  ./$(NAME) 1 800 -200 200
-# @echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
-#  ./$(NAME) 1 800 200 200
-# @echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
-#  ./$(NAME) 5 800 200 200 10
-# @echo "$(GREEN)[PHILO]:\t No philosopher should die and the simulation should stop when every philosopher has eaten at least 7 times.$(RESET)"
-#  ./$(NAME) 5 800 200 200 7
-# @echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
-#  ./$(NAME) 4 410 200 200 10
-# @echo "$(GREEN)[PHILO]:\t One philosopher should die.$(RESET)"
-#  ./$(NAME) 4 310 200 100
-# @echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
-#  ./$(NAME) 100 800 200 200 10
-# @echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
-#  ./$(NAME) 2 800 200 200 100
+	@read ans
+		./$(NAME) 1 800 200 200
+	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
+	@read ans
+		./$(NAME) 5 800 200 200 10
+	@echo "$(GREEN)[PHILO]:\t No philosopher should die and the simulation should stop when every philosopher has eaten at least 7 times.$(RESET)"
+	@read ans
+		./$(NAME) 5 800 200 200 7
+	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
+	@read ans
+		./$(NAME) 4 410 200 200 10
+	@echo "$(GREEN)[PHILO]:\t One philosopher should die.$(RESET)"
+	@read ans
+		./$(NAME) 4 310 200 100
+	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
+	@read ans
+		./$(NAME) 100 800 200 200 10
+	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
+	@read ans
+		./$(NAME) 2 800 200 200 100
 
 hel: all
 	valgrind --tool=helgrind --history-level=approx -s ./$(NAME) $(ARG)

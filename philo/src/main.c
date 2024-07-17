@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:45:02 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/16 15:16:52 by tfalchi          ###   ########.fr       */
+/*   Updated: 2024/07/17 19:01:48 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ int main(int argc, char *argv[])
 
 	// Monitor(data);
 
-	display_table(data);
+	//display_table(data);
 	free_and_exit(data, NULL);
 }
