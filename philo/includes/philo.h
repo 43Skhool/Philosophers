@@ -22,6 +22,12 @@
 # include <sys/time.h>
 # include "utils.h"
 
+typedef struct s_fork
+{
+	pthread_mutex_t	fork;
+	t_bool			is_avaible;
+}	t_fork;
+
 // Is managed as a "chain" connecting first and last "nodes"
 typedef struct s_philo
 {
@@ -36,8 +42,8 @@ typedef struct s_philo
 	struct s_data	*data;
 
 	pthread_t		thread_id;
-	pthread_mutex_t	r_fork;
-	pthread_mutex_t	*l_fork;
+	t_fork			*r_fork;
+	t_fork			*l_fork;
 }	t_philo;
 
 // All usigned because they can't be negative
