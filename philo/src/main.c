@@ -67,8 +67,8 @@ int main(int argc, char *argv[])
 	data = parse_arguments(argc, argv);
 	data = initialize_table(data);
 
-	if (!create_threads(data))
-		Monitor(data);
+	// if (!create_threads(data))
+	// 	Monitor(data);
 
 	// Monitor(data);
 
