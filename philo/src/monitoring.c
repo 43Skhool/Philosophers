@@ -12,6 +12,9 @@
 
 #include "philo.h"
 
+t_philo	*check_philo(t_data *data);
+int	check_meals(t_data *data);
+
 void	Monitor(t_data *data)
 {
 	while (!check_philo(data) && !check_meals(data))
@@ -50,7 +53,7 @@ t_philo	*check_philo(t_data *data)
 {
 	t_philo	*p;
 	
-	pthread_mutex_lock(&data->p_mutex);
+	// pthread_mutex_lock(&data->p_mutex);
 	p = data->first_philo;
 	if ((int)(get_current_time() - p->last_meal) >= data->time_to_die)
 		return (p);
@@ -64,6 +67,6 @@ t_philo	*check_philo(t_data *data)
 		if (p->right_philo)
 			p = p->right_philo;		
 	}
-	pthread_mutex_unlock(&data->p_mutex);
+	// pthread_mutex_unlock(&data->p_mutex);
 	return (NULL);
 }

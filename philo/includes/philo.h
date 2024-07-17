@@ -81,9 +81,5 @@ void	Monitor(t_data *data);
 
 t_philo	*check_philo(t_data *data);
 
-int		check_meals(t_data *data);
-
-int		create_threads(t_data *data);
-
 
 #endif
