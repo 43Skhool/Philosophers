@@ -22,7 +22,6 @@ void	*philo_routine(void *args)
 	while (!get_gameover(philo->data, false))
 	{
 		philo_eat(philo);
-		philo_sleep(philo);
 	}
 	return (NULL);
 }
