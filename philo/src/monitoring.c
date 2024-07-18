@@ -21,7 +21,7 @@ void	Monitor(t_data *data)
 	while (!check_philo(data) && !check_meals(data))
 	{
 		pthread_mutex_unlock(&data->p_mutex);
-		usleep(500);
+		usleep(1000);
 		pthread_mutex_lock(&data->p_mutex);
 	}
 	if (check_meals(data))

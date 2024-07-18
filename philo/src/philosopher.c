@@ -43,6 +43,9 @@ void philo_eat(t_philo *p)
 	pthread_mutex_unlock(&p->r_fork->fork);
 	p->r_fork->is_avaible = false;
 	p->l_fork->is_avaible = true;
+
+	philo_sleep(p);
+	ft_mutex_write(p, "is thinking.");
 }
 
 t_bool	take_forks(t_philo *philo)
