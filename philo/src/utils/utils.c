@@ -15,7 +15,7 @@
 void ft_mutex_write(t_philo *p, char *str)
 {
 	pthread_mutex_lock(&p->data->write_lock);
-	if (get_gameover(p->data, false))
+	if (!get_game(p))
 	{
 		pthread_mutex_unlock(&p->data->write_lock);
 		return ;
@@ -65,6 +65,7 @@ void	display_table(t_data *data)
 		printf("%p <- Current id:%i -> %p\n", &philo_tmp->l_fork->fork, philo_tmp->id, &philo_tmp->r_fork->fork);
 		printf("on his left id: %p, ", &philo_tmp->left_philo->id);
 		printf("on his rigth id: %p\n", &philo_tmp->right_philo->id);
+		printf("lock no.%p\n", &philo_tmp->philo_lock);
 		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}

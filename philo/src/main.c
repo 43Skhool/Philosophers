@@ -12,6 +12,15 @@
 
 #include "philo.h"
 
+int		get_game(t_philo *p)
+{
+	int i;
+	pthread_mutex_lock(&p->philo_lock);
+	i = p->game;
+	pthread_mutex_unlock(&p->philo_lock);
+	return (i);
+}
+
 void	*philo_routine(void *args)
 {
 	t_philo *philo;
@@ -19,7 +28,7 @@ void	*philo_routine(void *args)
 	philo = (t_philo *)args;
 	if (philo->id % 2)
 		philo_sleep(philo);
-	while (!get_gameover(philo->data, false))
+	while (get_game(philo))
 	{
 		philo_eat(philo);
 	}

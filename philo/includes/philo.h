@@ -33,6 +33,7 @@ typedef struct s_philo
 {
 	int				id;
 	int				meals_eaten;
+	int				game;
 	size_t			last_meal;
 	size_t			birthday;
 
@@ -44,6 +45,7 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	t_fork			*r_fork;
 	t_fork			*l_fork;
+	pthread_mutex_t	philo_lock;
 }	t_philo;
 
 // All usigned because they can't be negative
@@ -87,5 +89,10 @@ void	Monitor(t_data *data);
 
 t_philo	*check_philo(t_data *data);
 
+int	check_death(t_philo *p);
+
+int	check_meal(t_philo *p);
+
+int		get_game(t_philo *p);
 
 #endif

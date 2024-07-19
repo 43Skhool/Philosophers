@@ -63,6 +63,7 @@ static void	free_philos(t_data *data)
 		data->first_philo = philo_tmp->right_philo;
 		//pthread_join(philo_tmp->thread_id, NULL);
 		pthread_mutex_destroy(&philo_tmp->r_fork->fork);
+		pthread_mutex_destroy(&philo_tmp->philo_lock);
 		free(philo_tmp->r_fork);
 		free(philo_tmp);
 		philo_tmp = data->first_philo;
