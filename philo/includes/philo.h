@@ -48,9 +48,6 @@ typedef struct s_philo
 	pthread_mutex_t	philo_lock;
 }	t_philo;
 
-// All usigned because they can't be negative
-//Game over is used to tell to all philos when someone is death so all thread will stop
-//Timestamp: time when the program is started
 typedef struct s_data
 {
 	int				number_of_philosophers;	
