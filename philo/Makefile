@@ -18,7 +18,7 @@ FLAGS		=  -Wall -Werror -Wextra -I includes -pthread -g
 
 OBJS		= $(SRC:%.c=%.o)
 
-ARG = 105 600 150 150 10
+ARG = 100 800 150 150 10
 
 # -s : for valgrind
 $(NAME): $(OBJS)
@@ -68,7 +68,6 @@ test: all
 	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
 	@read ans
 		./$(NAME) 2 800 200 200 100
-	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
 
 hel: all
 	valgrind --tool=helgrind --history-level=approx -s ./$(NAME) $(ARG)

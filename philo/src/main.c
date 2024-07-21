@@ -39,25 +39,17 @@ void	*philo_routine(void *args)
 int create_threads(t_data *data)
 {
 	t_philo *p;
-	
-	pthread_mutex_lock(&data->p_mutex);
+
 	p = data->first_philo;
 	if (create_philo_routine(p))
-	{
-		pthread_mutex_unlock(&data->p_mutex);
 		return (1);
-	}
 	p = p->right_philo;
 	while (p != data->first_philo)
 	{
 		if (create_philo_routine(p))
-		{
-			pthread_mutex_unlock(&data->p_mutex);
 			return (1);
-		}
 		p = p->right_philo;
 	}
-	pthread_mutex_unlock(&data->p_mutex);
 	return (0);
 }
 
@@ -80,6 +72,6 @@ int main(int argc, char *argv[])
 
 	// Monitor(data);
 
-	display_table(data);
+	//display_table(data);
 	free_and_exit(data, NULL);
 }

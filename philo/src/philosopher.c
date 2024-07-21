@@ -25,9 +25,16 @@ void philo_eat(t_philo *p)
 	if (p->data->number_of_philosophers == 1)
 		return ;
 
-	if (take_forks(p) == false)
-		return;
-	
+	if (p->data->number_of_philosophers == p->id)
+	{
+		pthread_mutex_lock(&p->r_fork->fork);
+		pthread_mutex_lock(&p->l_fork->fork);
+	}
+	else
+	{
+		pthread_mutex_lock(&p->l_fork->fork);
+		pthread_mutex_lock(&p->r_fork->fork);
+	}
 	ft_mutex_write(p, "took right fork.");
 	ft_mutex_write(p, "took left fork.");
 	ft_mutex_write(p, "is eating.");
@@ -39,8 +46,6 @@ void philo_eat(t_philo *p)
 	ft_usleep(p->data->time_to_eat);
 	pthread_mutex_unlock(&p->l_fork->fork);
 	pthread_mutex_unlock(&p->r_fork->fork);
-	p->r_fork->is_avaible = true;
-	p->l_fork->is_avaible = true;
 
 	philo_sleep(p);
 	ft_mutex_write(p, "is thinking.");

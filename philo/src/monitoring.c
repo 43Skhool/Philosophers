@@ -98,7 +98,7 @@ void	Monitor(t_data *data)
 {
 	while (!check_philo(data) && !check_meals(data))
 	{
-		ft_usleep(2);
+		usleep(2000);
 	}
 	if (check_meals(data))
 		ft_mutex_write(data->first_philo, "each philosopher is satisfied");
