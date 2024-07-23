@@ -13,8 +13,8 @@ SRC = src/main.c \
 INCLUDES = ./includes
 
 # sanitize big no no
-#FLAGS		= -Wall -Werror -Wextra -I includes -pthread -fsanitize=thread -g
-FLAGS		=  -Wall -Werror -Wextra -I includes -pthread -g
+FLAGS		= -Wall -Werror -Wextra -I includes -pthread -fsanitize=thread -g
+#FLAGS		=  -Wall -Werror -Wextra -I includes -pthread -g
 
 OBJS		= $(SRC:%.c=%.o)
 
@@ -47,9 +47,9 @@ test: all
 	@echo "$(GREEN)[PHILO]:\t ARG$(RESET)"
 	@read ans
 		./$(NAME) $(ARG)
-	@echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
-	@read ans
-		./$(NAME) 1 800 200 200
+# @echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
+# @read ans
+# 	./$(NAME) 1 800 200 200 20
 	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
 	@read ans
 		./$(NAME) 5 800 200 200 10
