@@ -44,9 +44,9 @@ fclean: clean
 re: fclean all
 
 test: all
-	@echo "$(GREEN)[PHILO]:\t ARG$(RESET)"
-	@read ans
-		./$(NAME) $(ARG)
+# @echo "$(GREEN)[PHILO]:\t ARG$(RESET)"
+# @read ans
+# 	./$(NAME) $(ARG)
 # @echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
 # @read ans
 # 	./$(NAME) 1 800 200 200 20

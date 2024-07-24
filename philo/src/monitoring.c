@@ -70,6 +70,10 @@ int	check_death(t_philo *p)
 	int i;
 	//pthread_mutex_lock(&p->philo_lock);
 	i = ((int)(get_current_time() - p->last_meal) >= p->data->time_to_die);
+	if (i > 0)
+		i = 0;
+	else
+		i = 1;
 	//pthread_mutex_unlock(&p->philo_lock);
 	return (i);
 }
@@ -134,23 +138,26 @@ t_philo	*Check(t_data	*data)
 	return (NULL);
 }
 
+
 void	Monitor(t_data *data)
 {
 	t_philo	*result;
 
-	result = Check(data);
-	while (result == NULL)
+	// result = Check(data);
+	result = NULL;
+	while (true)
 	{
 		usleep(2000);
 		result = Check(data);
 		if (result != NULL)
 		{
 			ft_mutex_write(result, "has died of hunger.");
+			game_over(data);
 			break;
 		}
 	}
-	if (result == NULL)
-		ft_mutex_write(data->first_philo, "each philosopher is satisfied");
+	
+	ft_mutex_write(data->first_philo, "each philosopher is satisfied");
 	//get_gameover(data, true);
 	game_over(data);
 }
