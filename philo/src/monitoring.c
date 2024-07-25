@@ -70,10 +70,6 @@ int	check_death(t_philo *p)
 	int i;
 	//pthread_mutex_lock(&p->philo_lock);
 	i = ((int)(get_current_time() - p->last_meal) >= p->data->time_to_die);
-	if (i > 0)
-		i = 0;
-	else
-		i = 1;
 	//pthread_mutex_unlock(&p->philo_lock);
 	return (i);
 }
@@ -98,7 +94,7 @@ t_philo	*check_philo(t_data *data)
 	return (NULL);
 }
 
-// 1 error, 0 ok
+// 1 someone is death, 2 all are satisfied, 0 keep going
 int check_single_philo(t_philo	*philo)
 {
 	int result;
@@ -106,10 +102,12 @@ int check_single_philo(t_philo	*philo)
 	result = 0;
 	pthread_mutex_lock(&philo->philo_lock);
 
-	result += check_death(philo);
+	if (check_death(philo))
+		result = 1;
 	
 	if (philo->data->meals_count != -1)
-		result += check_meal(philo);
+		if (check_meal(philo))
+			result = 2;
 
 	pthread_mutex_unlock(&philo->philo_lock);
 
@@ -117,6 +115,7 @@ int check_single_philo(t_philo	*philo)
 }
 
 //return death philo or null if all are satisfied
+// null + 1 if 
 t_philo	*Check(t_data	*data)
 {
 	t_philo	*p;
@@ -135,29 +134,54 @@ t_philo	*Check(t_data	*data)
 		if (p->right_philo)
 			p = p->right_philo;
 	}
-	return (NULL);
+	return (NULL + 3);
 }
 
+// 1 someone is death, 2 all are satisfied, 0 keep going
+int manage_error(t_data *data, int code, t_philo *died_philo)
+{
+	if (code == 0)
+		return (0);
+
+	if (code == 1)
+		ft_mutex_write(died_philo, "has died of hunger.");
+	
+	if (code == 2)
+		ft_mutex_write(data->first_philo, "each philosopher is satisfied");
+
+	game_over(data);
+	return (1);
+}
 
 void	Monitor(t_data *data)
 {
-	t_philo	*result;
+	t_philo	*p;
 
-	// result = Check(data);
-	result = NULL;
 	while (true)
 	{
 		usleep(2000);
-		result = Check(data);
-		if (result != NULL)
-		{
-			ft_mutex_write(result, "has died of hunger.");
-			game_over(data);
+
+		p = data->first_philo;
+
+		if (manage_error (data, check_single_philo(p), p) == 1)
 			break;
+
+		if (p->right_philo)
+			p = p->right_philo;
+
+		while (p != data->first_philo)
+		{
+			if (manage_error (data, check_single_philo(p), p) == 1)
+				break;
+
+			if (p->right_philo)
+				p = p->right_philo;
 		}
+
+		p = NULL;
 	}
 	
-	ft_mutex_write(data->first_philo, "each philosopher is satisfied");
-	//get_gameover(data, true);
+	// ft_mutex_write(data->first_philo, "each philosopher is satisfied");
+	// //get_gameover(data, true);
 	game_over(data);
 }
