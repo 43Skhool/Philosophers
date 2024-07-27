@@ -44,10 +44,18 @@ int	check_meals(t_data *data)
 
 int	check_death(t_philo *p)
 {
-	int i;
+	int 		i;
+	static int	y;
+	if (p->id == 1)
+		y = 0;
 	pthread_mutex_lock(&p->philo_lock);
 	i = ((int)(get_current_time() - p->last_meal) >= p->data->time_to_die);
+	y += (p->meals_eaten > p->data->meals_count && p->data->meals_count != -1);
 	pthread_mutex_unlock(&p->philo_lock);
+	if (y == p->data->number_of_philosophers)
+		return (1);
+	if (p->id == p->data->number_of_philosophers)
+		y = 0;
 	return (i);
 }
 
@@ -96,7 +104,7 @@ void	game_over(t_data *data)
 
 void	Monitor(t_data *data)
 {
-	while (!check_philo(data) && !check_meals(data))
+	while (!check_philo(data))
 	{
 		usleep(2000);
 	}
