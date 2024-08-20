@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ato_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:40:24 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/17 15:40:55 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:24:43 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 int	ft_atoi(const char *str)
 {

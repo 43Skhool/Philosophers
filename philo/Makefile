@@ -5,10 +5,11 @@ SRC = src/main.c \
 	src/cleaning.c \
 	src/initialize.c \
 	src/philosopher.c \
+	src/game_o.c \
 	src/monitoring.c \
 	src/utils/utils.c \
 	src/utils/ato_utils.c \
-	src/utils/parsing_utils.c 
+	src/utils/parsing_utils.c \
 
 INCLUDES = ./includes
 

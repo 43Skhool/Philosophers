@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:45:02 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/17 19:01:48 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/08/11 16:01:23 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		get_game(t_philo *p)
+int	get_game(t_philo *p)
 {
-	int i;
+	int	i;
+
 	pthread_mutex_lock(&p->philo_lock);
 	i = p->game;
 	pthread_mutex_unlock(&p->philo_lock);
@@ -23,7 +24,7 @@ int		get_game(t_philo *p)
 
 void	*philo_routine(void *args)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)args;
 	if (philo->id % 2)
@@ -35,10 +36,10 @@ void	*philo_routine(void *args)
 	return (NULL);
 }
 
-//TODO spostare questa cosa direttamente in initialize_table()
-int create_threads(t_data *data)
+// TODO spostare questa cosa direttamente in initialize_table()
+int	create_threads(t_data *data)
 {
-	t_philo *p;
+	t_philo	*p;
 
 	p = data->first_philo;
 	if (create_philo_routine(p))
@@ -53,27 +54,25 @@ int create_threads(t_data *data)
 	return (0);
 }
 
-int create_philo_routine(t_philo *p)
+int	create_philo_routine(t_philo *p)
 {
 	if (pthread_create(&p->thread_id, NULL, philo_routine, p))
 		return (1);
 	return (0);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_data		*data;
+	t_data	*data;
 
 	data = parse_arguments(argc, argv);
+	if (!data)
+		return (1);
 	data = initialize_table(data);
-
-	// printf("|%i|\n", NULL == NULL);
-
+	if (!data)
+		return (1);
 	if (!create_threads(data))
-		Monitor(data);
-
-	Monitor(data);
-
-	//display_table(data);
-	free_and_exit(data, NULL);
+		monitor(data);
+	monitor(data);
+	free_all(data, NULL);
 }

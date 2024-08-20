@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:55:14 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/17 19:01:48 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:25:33 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void ft_mutex_write(t_philo *p, char *str)
+void	ft_mutex_write(t_philo *p, char *str)
 {
 	pthread_mutex_lock(&p->data->write_lock);
 	if (!get_game(p))
@@ -20,12 +20,10 @@ void ft_mutex_write(t_philo *p, char *str)
 		pthread_mutex_unlock(&p->data->write_lock);
 		return ;
 	}
-	printf("[%zu]\t%d\t%s\n",(get_current_time() - p->birthday), p->id, str);
+	printf("[%zu]\t%d\t%s\n", (get_current_time() - p->birthday), p->id, str);
 	pthread_mutex_unlock(&p->data->write_lock);
 }
 
-// TODO in caso di errore nel gettimeofday non sarebbe meglio uscire direttamente con la funzione
-// free_adn_exit()? so che non succede mai ma se dovesse succedere si sfanculerebbe tutto??
 size_t	get_current_time(void)
 {
 	struct timeval	time;
@@ -35,7 +33,6 @@ size_t	get_current_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-//TO DO avevi messo 500 ma ho visto che molti usano 1000 
 int	ft_usleep(size_t milliseconds)
 {
 	size_t	start;
@@ -46,24 +43,21 @@ int	ft_usleep(size_t milliseconds)
 	return (0);
 }
 
-//start from 1 and and at num of philo just to follow id order
 void	display_table(t_data *data)
 {
 	t_philo	*philo_tmp;
 	int		i;
 
 	i = 1;
-	// if (data->number_of_philosophers == 1)
-	// {
-	// 	printf("Current id:%i\n", data->first_philo->id);
-	// }
 	printf("%p writelock\n", &data->write_lock);
 	printf("%p gameover\n", &data->game_over);
 	philo_tmp = data->first_philo;
 	while (i <= data->number_of_philosophers)
 	{
-		printf("%p <- Current id:%i -> %p\n", &philo_tmp->l_fork->is_avaible, philo_tmp->id, &philo_tmp->r_fork->is_avaible);
-		printf("%p <- Current id:%i -> %p\n", &philo_tmp->l_fork->fork, philo_tmp->id, &philo_tmp->r_fork->fork);
+		printf("%p <- Current id:%i -> %p\n", &philo_tmp->l_fork->is_avaible,
+			philo_tmp->id, &philo_tmp->r_fork->is_avaible);
+		printf("%p <- Current id:%i -> %p\n", &philo_tmp->l_fork->fork,
+			philo_tmp->id, &philo_tmp->r_fork->fork);
 		printf("on his left id: %p, ", &philo_tmp->left_philo->id);
 		printf("on his rigth id: %p\n", &philo_tmp->right_philo->id);
 		printf("lock no.%p\n", &philo_tmp->philo_lock);
@@ -74,7 +68,7 @@ void	display_table(t_data *data)
 
 t_bool	get_gameover(t_data *data, t_bool action)
 {
-	t_bool ret;
+	t_bool	ret;
 
 	pthread_mutex_lock(&data->game_lock);
 	if (action == true)

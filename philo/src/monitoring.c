@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:43:14 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/17 17:19:54 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:55:16 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	check_meal(t_philo *p)
 {
-	int i;
+	int	i;
+
 	pthread_mutex_lock(&p->philo_lock);
 	i = (p->meals_eaten < p->data->meals_count);
 	pthread_mutex_unlock(&p->philo_lock);
@@ -44,12 +45,13 @@ int	check_meals(t_data *data)
 
 int	check_death(t_philo *p)
 {
-	int 		i;
+	int			i;
 	static int	y;
+
 	if (p->id == 1)
 		y = 0;
 	pthread_mutex_lock(&p->philo_lock);
-	i = ((int)(get_current_time() - p->last_meal) >= p->data->time_to_die);
+	i = ((int)(get_current_time() - p->last_meal) >= p->data->time_to_die + 5);
 	y += (p->meals_eaten > p->data->meals_count && p->data->meals_count != -1);
 	pthread_mutex_unlock(&p->philo_lock);
 	if (y == p->data->number_of_philosophers)
@@ -62,47 +64,23 @@ int	check_death(t_philo *p)
 t_philo	*check_philo(t_data *data)
 {
 	t_philo	*p;
-	
+
 	p = data->first_philo;
 	if (check_death(p))
 		return (p);
 	if (p->right_philo)
 		p = p->right_philo;
-
 	while (p != data->first_philo)
 	{
 		if (check_death(p))
 			return (p);
 		if (p->right_philo)
-			p = p->right_philo;		
+			p = p->right_philo;
 	}
 	return (NULL);
 }
 
-void	set_game_over(t_philo *p)
-{
-	pthread_mutex_lock(&p->philo_lock);
-	p->game = 0;
-	pthread_mutex_unlock(&p->philo_lock);
-}
-
-void	game_over(t_data *data)
-{
-	t_philo	*p;
-
-	p = data->first_philo;
-	set_game_over(p);
-	if (p->right_philo)
-		p = p->right_philo;
-	while (p != data->first_philo)
-	{
-		set_game_over(p);
-		if (p->right_philo)
-			p = p->right_philo;		
-	}
-}
-
-void	Monitor(t_data *data)
+void	monitor(t_data *data)
 {
 	while (!check_philo(data))
 	{
@@ -112,6 +90,5 @@ void	Monitor(t_data *data)
 		ft_mutex_write(data->first_philo, "each philosopher is satisfied");
 	else
 		ft_mutex_write(check_philo(data), "has died of hunger.");
-	//get_gameover(data, true);
 	game_over(data);
 }

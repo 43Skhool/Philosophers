@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:05:01 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/17 15:40:55 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:48:06 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ static int	get_single_arg(int *taget, char *arg)
 static t_data	*load_arguments(t_data *data, char *argv[], int argc)
 {
 	if (get_single_arg(&data->number_of_philosophers, argv[1]) == -1)
-		free_and_exit(data, "Error\n number of philosophers not valid\n");
+		return (free_all(data, "Error\n number of philosophers not valid\n"));
 	if (get_single_arg(&data->time_to_die, argv[2]) == -1)
-		free_and_exit(data, "Error\n time to die not valid\n");
+		return (free_all(data, "Error\n time to die not valid\n"));
 	if (get_single_arg(&data->time_to_eat, argv[3]) == -1)
-		free_and_exit(data, "Error\n time to eat not valid\n");
+		return (free_all(data, "Error\n time to eat not valid\n"));
 	if (get_single_arg(&data->time_to_sleep, argv[4]) == -1)
-		free_and_exit(data, "Error\n time to live not valid\n");
+		return (free_all(data, "Error\n time to live not valid\n"));
 	if (argc == 6)
 	{
 		if (get_single_arg(&data->meals_count, argv[5]) == -1)
-			free_and_exit(data, "Error\n number of eating not valid\n");
+			return (free_all(data, "Error\n number of eating not valid\n"));
 	}
 	else
 		data->meals_count = -1;
@@ -69,14 +69,14 @@ t_data	*parse_arguments(int argc, char *argv[])
 
 	data = NULL;
 	if (argc != 5 && argc != 6)
-		free_and_exit(data, "Error\n wrong number of arguments\n");
+		return (free_all(data, "Error\n wrong number of arguments\n"));
 	data = malloc(sizeof(t_data));
 	if (!data)
-		free_and_exit(data, "Error\n allocation failed\n");
+		return (free_all(data, "Error\n allocation failed\n"));
 	if (pthread_mutex_init(&data->write_lock, NULL) != 0
 		|| pthread_mutex_init(&data->game_lock, NULL) != 0
 		|| pthread_mutex_init(&data->p_mutex, NULL) != 0)
-		free_and_exit(data, "Error\n writing lock allocation failed\n");
+		return (free_all(data, "Error\n writing lock allocation failed\n"));
 	data->first_philo = NULL;
 	data->game_over = false;
 	data = load_arguments(data, argv, argc);

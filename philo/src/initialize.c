@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 12:53:56 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/17 17:34:57 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:39:41 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo);
-static t_bool	distribute_forks(t_data *data);
+static t_bool	distr_forks(t_data *data);
 static t_fork	*new_fork(t_data *data);
 
 // Used to allocate philosophers and forks
@@ -26,24 +26,31 @@ static t_fork	*new_fork(t_data *data);
 //		with the current one
 // In the end, to close the "chain" is conneceted the current node
 //	with the first one
+
 t_data	*initialize_table(t_data *data)
 {
-	t_philo *philo_tmp;
+	t_philo	*philo_tmp;
 	int		i;
 
 	i = 1;
 	philo_tmp = new_philo(data, i++, NULL);
+	if (!philo_tmp)
+		return (NULL);
 	data->first_philo = philo_tmp;
 	while (i <= data->number_of_philosophers)
 	{
 		philo_tmp->right_philo = new_philo(data, i, philo_tmp);
+		if (!philo_tmp->right_philo)
+			return (NULL);
 		philo_tmp->right_philo->left_philo = philo_tmp;
 		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}
 	philo_tmp->right_philo = data->first_philo;
 	data->first_philo->left_philo = philo_tmp;
-	distribute_forks(data);
+	distr_forks(data);
+	if (!data->first_philo->r_fork)
+		return (free_all(data, "Error\n fork allocation failed"));
 	return (data);
 }
 
@@ -55,24 +62,19 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 
 	philo = malloc(sizeof(t_philo));
 	if (!philo || pthread_mutex_init(&philo->philo_lock, NULL))
-		free_and_exit(data, "Error\n allocation failed");
+		return (free_all(data, "Error\n allocation failed"));
 	philo->id = id;
-
 	if (left_philo)
-	{
-		// philo->l_fork = &left_philo->r_fork;
 		philo->left_philo = left_philo;
-	}
-	philo->birthday =  data->timestamp;
+	philo->birthday = data->timestamp;
 	philo->game = 1;
-	// adesso che abbiamo data birthday non serve ma non ho voglia di riscrivere i metodi del write
 	philo->last_meal = get_current_time();
 	philo->meals_eaten = 0;
 	philo->data = data;
 	return (philo);
 }
 
-static t_bool	distribute_forks(t_data *data)
+static t_bool	distr_forks(t_data *data)
 {
 	t_philo	*philo;
 	int		i;
@@ -83,6 +85,8 @@ static t_bool	distribute_forks(t_data *data)
 	while (i < data->number_of_philosophers)
 	{
 		fork = new_fork(data);
+		if (!fork)
+			return (false);
 		philo->r_fork = fork;
 		philo = philo->right_philo;
 		philo->l_fork = fork;
@@ -93,13 +97,13 @@ static t_bool	distribute_forks(t_data *data)
 
 static t_fork	*new_fork(t_data *data)
 {
-	t_fork	*new_fork;
+	t_fork	*new_f;
 
-	new_fork = malloc(sizeof(t_fork));
-	if (!new_fork)
-		free_and_exit(data, "Error\n fork allocation failed");
-	if (pthread_mutex_init(&new_fork->fork, NULL))
-		free_and_exit(data, "Error\n fork allocation failed");
-	new_fork->is_avaible = true;
-	return (new_fork);
+	new_f = malloc(sizeof(t_fork));
+	if (!new_f)
+		return (free_all(data, "Error\n fork allocation failed"));
+	if (pthread_mutex_init(&new_f->fork, NULL))
+		return (free_all(data, "Error\n fork allocation failed"));
+	new_f->is_avaible = true;
+	return (new_f);
 }

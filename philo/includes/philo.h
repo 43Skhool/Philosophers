@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:01:24 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/17 17:47:18 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:33:07 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,12 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				meals_count;
-
 	t_bool			game_over;
 	size_t			timestamp;
 	t_philo			*first_philo;
-	pthread_mutex_t write_lock;
-	pthread_mutex_t game_lock;
-	pthread_mutex_t p_mutex;
+	pthread_mutex_t	write_lock;
+	pthread_mutex_t	game_lock;
+	pthread_mutex_t	p_mutex;
 }	t_data;
 
 t_data	*parse_arguments(int argc, char *argv[]);
@@ -70,7 +69,7 @@ t_data	*initialize_table(t_data *data);
 
 void	display_table(t_data *data);
 
-void	free_and_exit(t_data *data, char *error);
+void	*free_all(t_data *data, char *error);
 
 int		create_philo_routine(t_philo *p);
 
@@ -82,14 +81,16 @@ void	philo_eat(t_philo *p);
 
 t_bool	get_gameover(t_data *data, t_bool ac);
 
-void	Monitor(t_data *data);
+void	monitor(t_data *data);
 
 t_philo	*check_philo(t_data *data);
 
-int	check_death(t_philo *p);
+int		check_death(t_philo *p);
 
-int	check_meal(t_philo *p);
+int		check_meal(t_philo *p);
 
 int		get_game(t_philo *p);
+
+void	game_over(t_data *data);
 
 #endif
