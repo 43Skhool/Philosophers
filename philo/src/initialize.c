@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maceccar <maceccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 12:53:56 by lebartol          #+#    #+#             */
-/*   Updated: 2024/08/11 14:39:41 by tfalchi          ###   ########.fr       */
+/*   Updated: 2024/10/14 13:28:35 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo);
 static t_bool	distr_forks(t_data *data);
 static t_fork	*new_fork(t_data *data);
-
-// Used to allocate philosophers and forks
-// i starts from 1 beacause philos id must start from 1
-// Crete 1° philo with NULL as left_philosopher beacause is the first
-//	=> his left philo will be assigned at the end
-// It's used the RIGHT CREATION
-//	=> First of all is created first node and assigned to first_philo in data
-//		Each time is creted the next one (on his right) and connected
-//		with the current one
-// In the end, to close the "chain" is conneceted the current node
-//	with the first one
 
 t_data	*initialize_table(t_data *data)
 {
@@ -54,8 +43,6 @@ t_data	*initialize_table(t_data *data)
 	return (data);
 }
 
-// Just left node in parameters because right creation is used
-//	=> assign just the left one because you don't know what it will be later
 static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 {
 	t_philo	*philo;

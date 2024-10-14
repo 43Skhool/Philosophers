@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaning.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maceccar <maceccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:05:37 by lebartol          #+#    #+#             */
-/*   Updated: 2024/08/11 14:48:39 by tfalchi          ###   ########.fr       */
+/*   Updated: 2024/10/14 13:28:45 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 static void	free_philos(t_data *data);
 static void	join_threads(t_data *data);
 
-// error is used to print an OPTIONAL message error
-//	for example during parsing
-// Free all philosophers
-// Check if data isn't null is just to handle possible error
-//	during memory allocation
 void	*free_all(t_data *data, char *error)
 {
 	if (error)
@@ -37,17 +32,6 @@ void	*free_all(t_data *data, char *error)
 		free(data);
 	return (NULL);
 }
-
-// Pass throw the list of philosophers and free each one
-// Check if first_philo is null, in this case there would have been
-//	an error during parsing
-// Loop until i hasn't reach the number of philos beacause
-//	doing while(philo_tmp) would result in a conditianl jump and infinite loop
-// As in the allocation, is always freed the left side node of the current one
-//	=> you step on and free the previous one
-// Assing NULL to only one reference to philos in data just
-//	to avoid conditional jump (is optional)
-// l'ultimo filosofo quando lo liberi
 
 static void	free_philos(t_data *data)
 {

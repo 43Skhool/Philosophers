@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maceccar <maceccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:45:02 by lebartol          #+#    #+#             */
-/*   Updated: 2024/08/11 16:01:23 by tfalchi          ###   ########.fr       */
+/*   Updated: 2024/10/14 13:28:29 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	*philo_routine(void *args)
 	return (NULL);
 }
 
-// TODO spostare questa cosa direttamente in initialize_table()
 int	create_threads(t_data *data)
 {
 	t_philo	*p;

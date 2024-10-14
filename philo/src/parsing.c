@@ -3,23 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maceccar <maceccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:05:01 by lebartol          #+#    #+#             */
-/*   Updated: 2024/08/11 14:48:06 by tfalchi          ###   ########.fr       */
+/*   Updated: 2024/10/14 13:28:19 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// Used to check every single argc because all of them respect the same
-//	rules and are of the same type
-// Assign to target the value get by arg
-// Check if string is numeric, it includes first sign: ++1: wrong, +1: ok
-// Check with atol fi the number isn't bigger than int
-//	beacuse it can't be checked just atoi, it would cast it with an overflow
-// Assign the value to target parameter and return it
-// Return the number alreay parsed or -1 if ther's some errors
 static int	get_single_arg(int *taget, char *arg)
 {
 	if (!ft_is_string_numeric(arg))
@@ -32,11 +24,6 @@ static int	get_single_arg(int *taget, char *arg)
 	return (*taget);
 }
 
-// Returns data or exit the program bu free_and_free()
-// Try to assign value to variable in data for each parameters
-//	if an error occurs, the error is specific for each parameter
-// Last, being optional is verified just when argc == 6
-//	if isn't specified: -1
 static t_data	*load_arguments(t_data *data, char *argv[], int argc)
 {
 	if (get_single_arg(&data->number_of_philosophers, argv[1]) == -1)
@@ -58,11 +45,6 @@ static t_data	*load_arguments(t_data *data, char *argv[], int argc)
 	return (data);
 }
 
-// Check argc
-// Try and check malloc
-// Get the values from argv
-// Assign NULL to first_philo pointer to avoid future conditional jump
-// TO DO spostare l'inizializzazione di DATA in una funzione apparte
 t_data	*parse_arguments(int argc, char *argv[])
 {
 	t_data	*data;

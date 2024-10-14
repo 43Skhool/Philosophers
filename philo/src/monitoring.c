@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maceccar <maceccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:43:14 by lebartol          #+#    #+#             */
-/*   Updated: 2024/08/11 17:55:16 by tfalchi          ###   ########.fr       */
+/*   Updated: 2024/10/14 13:24:40 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	monitor(t_data *data)
 	{
 		usleep(2000);
 	}
-	if (check_meals(data))
+	if (data->number_of_philosophers != 1 && check_meals(data))
 		ft_mutex_write(data->first_philo, "each philosopher is satisfied");
 	else
 		ft_mutex_write(check_philo(data), "has died of hunger.");
